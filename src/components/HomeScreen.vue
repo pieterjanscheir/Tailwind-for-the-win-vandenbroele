@@ -295,13 +295,111 @@
             </table>
           </div>
         </div>
+        <div class="px-4 sm:px-6 lg:px-8">
+        <div class="mt-8 flex flex-col">
+          <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+              <div class="relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                <div v-if="selectedPeople.length > 0" class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
+                  <button type="button" class="inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Bulk edit</button>
+                  <button type="button" class="inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Delete all</button>
+                </div>
+                <table class="min-w-full table-fixed divide-y divide-gray-300">
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">
+                        <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6" :checked="indeterminate || selectedPeople.length === people.length" :indeterminate="indeterminate" @change="selectedPeople = $event.target.checked ? people.map((p) => p.email) : []" />
+                      </th>
+                      <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+                        <a href="#" class="group inline-flex">
+                          Referentie nummer
+                          <span class="ml-2 flex-none rounded bg-gray-200 text-gray-900 group-hover:bg-gray-300">
+                            <ChevronDownIcon class="h-5 w-5" aria-hidden="true" />
+                          </span>
+                        </a>
+                      </th>
+                      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                        <a href="#" class="group inline-flex">
+                          Type
+                          <span class="ml-2 flex-none rounded bg-gray-200 text-gray-900 group-hover:bg-gray-300">
+                            <ChevronDownIcon class="h-5 w-5" aria-hidden="true" />
+                          </span>
+                        </a>
+                      </th>
+                      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                        <a href="#" class="group inline-flex">
+                          Aanvrager/Betrokkene
+                          <span class="ml-2 flex-none rounded bg-gray-200 text-gray-900 group-hover:bg-gray-300">
+                            <ChevronDownIcon class="h-5 w-5" aria-hidden="true" />
+                          </span>
+                        </a>
+                      </th>
+                      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                        <a href="#" class="group inline-flex">
+                          Gewijzigd
+                          <span class="ml-2 flex-none rounded bg-gray-200 text-gray-900 group-hover:bg-gray-300">
+                            <ChevronDownIcon class="h-5 w-5" aria-hidden="true" />
+                          </span>
+                        </a>
+                      </th>
+                      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                        <a href="#" class="group inline-flex">
+                          Status
+                          <span class="ml-2 flex-none rounded bg-gray-200 text-gray-900 group-hover:bg-gray-300">
+                            <ChevronDownIcon class="h-5 w-5" aria-hidden="true" />
+                          </span>
+                        </a>
+                      </th>
+                      <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                        <a href="#" class="group inline-flex">
+                          Acties
+                          <span class="ml-2 flex-none rounded bg-gray-200 text-gray-900 group-hover:bg-gray-300">
+                            <ChevronDownIcon class="h-5 w-5" aria-hidden="true" />
+                          </span>
+                        </a>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-200 bg-white">
+                    <tr v-for="person in people" :key="person.email" :class="[selectedPeople.includes(person.email) && 'bg-gray-50']">
+                      <td class="relative w-12 px-6 sm:w-16 sm:px-8">
+                        <div v-if="selectedPeople.includes(person.email)" class="absolute inset-y-0 left-0 w-0.5 bg-indigo-600"></div>
+                        <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6" :value="person.email" v-model="selectedPeople" />
+                      </td>
+                      <td :class="['whitespace-nowrap py-4 pr-3 text-sm font-medium', selectedPeople.includes(person.email) ? 'text-indigo-600' : 'text-gray-900']">
+                        {{ person.referenceNumber }}
+                      </td>
+                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        {{ person.type }}
+                      </td>
+                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        {{ person.applicantInvolved }}
+                      </td>
+                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        {{ person.date }}
+                      </td>
+                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">{{ person.status }}</span>
+                     </td>
+                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        {{ person.acties }}
+                      </td>
+
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       </main>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import {
   Dialog,
   DialogPanel,
@@ -313,7 +411,7 @@ import {
   TransitionRoot,
 } from '@headlessui/vue'
 import { Bars3CenterLeftIcon, ClockIcon, HomeIcon, XMarkIcon } from '@heroicons/vue/24/outline'
-import { ChevronRightIcon, TableCellsIcon, EllipsisVerticalIcon, MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
+import { ChevronRightIcon, ChevronDownIcon, TableCellsIcon, EllipsisVerticalIcon, MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
@@ -367,4 +465,67 @@ const projects = [
 const pinnedProjects = projects.filter((project) => project.pinned)
 
 const sidebarOpen = ref(false)
+const people = [
+  {
+    referenceNumber: '20180223-0001',
+    type: 'Attest van leven',
+    applicantInvolved: 'Tijs Joris Raes',
+    date: '25/10/2022',
+    status: "Afgewerkt",
+    acties: "..."
+  },
+  {
+    referenceNumber: '20180223-0001',
+    type: 'Attest van leven',
+    applicantInvolved: 'Tijs Joris Raes',
+    date: '25/10/2022',
+    status: "Afgewerkt",
+    acties: "..."
+  },
+  {
+    referenceNumber: '20180223-0001',
+    type: 'Attest van leven',
+    applicantInvolved: 'Tijs Joris Raes',
+    date: '25/10/2022',
+    status: "Afgewerkt",
+    acties: "..."
+  },
+  {
+    referenceNumber: '20180223-0001',
+    type: 'Attest van leven',
+    applicantInvolved: 'Tijs Joris Raes',
+    date: '25/10/2022',
+    status: "Afgewerkt",
+    acties: "..."
+  },
+  {
+    referenceNumber: '20180223-0001',
+    type: 'Attest van leven',
+    applicantInvolved: 'Tijs Joris Raes',
+    date: '25/10/2022',
+    status: "Afgewerkt",
+    acties: "..."
+  },
+  {
+    referenceNumber: '20180223-0001',
+    type: 'Attest van leven',
+    applicantInvolved: 'Tijs Joris Raes',
+    date: '25/10/2022',
+    status: "Afgewerkt",
+    acties: "..."
+  },
+  {
+    referenceNumber: '20180223-0001',
+    type: 'Attest van leven',
+    applicantInvolved: 'Tijs Joris Raes',
+    date: '25/10/2022',
+    status: "Afgewerkt",
+    acties: "..."
+  },
+  // More people...
+]
+
+const selectedPeople = ref([])
+const checked = ref(false)
+const indeterminate = computed(() => selectedPeople.value.length > 0 && selectedPeople.value.length < people.length)
 </script>
