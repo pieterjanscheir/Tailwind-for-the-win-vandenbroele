@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen flex lg:overflow-y-hidden">
+  <div class="h-screen w-screen flex lg:overflow-y-hidden">
     <TransitionRoot as="template" :show="sidebarOpen">
       <Dialog as="div" class="relative z-40 lg:hidden" @close="sidebarOpen = false">
         <TransitionChild as="template" enter="transition-opacity ease-linear duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="transition-opacity ease-linear duration-300" leave-from="opacity-100" leave-to="opacity-0">
@@ -101,7 +101,7 @@
     </div>
     </div>
       <!-- Main column -->
-    <div class="flex flex-col">
+    <div class="flex flex-col w-full">
       <!-- Search header -->
       <div class="sticky top-0 z-10 flex h-16 flex-shrink-0 border-b border-gray-200 bg-white lg:hidden">
         <button type="button" class="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 lg:hidden" @click="sidebarOpen = true">
