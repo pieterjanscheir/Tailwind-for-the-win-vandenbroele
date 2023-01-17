@@ -59,7 +59,7 @@
       <div>
 
       <!-- Sidebar component -->
-      <div class="mt-5 flex h-0 flex-1 flex-col  pt-1 ">
+      <div class="mt-5 -mb-40 flex h-screen flex-1 flex-col pt-1 ">
         <!-- Navigation -->
         <nav class="mt-6 px-3 grow ">
           <div class="space-y-1">
@@ -70,7 +70,7 @@
           </div>
         </nav>
         <nav>
-          <div class="mt-8 h-full ">
+          <div class="-mt-8 h-full ">
             <!-- Secondary navigation -->
             <div class="mt-1 space-y-1" role="group" aria-labelledby="desktop-teams-headline">
               <a v-for="team in teams" :key="team.name" :href="team.href" class="group flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900">
