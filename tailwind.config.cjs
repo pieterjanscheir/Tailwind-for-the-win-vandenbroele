@@ -6,8 +6,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      margin: {
+        '510px': '510px',
+      },
       colors: {
-        'babyBlue': '#CCEFFF'
+        'babyBlue': '#CCEFFF',
+        'babyBlueLight': '#E5FFF7'
       },
     },
   },
