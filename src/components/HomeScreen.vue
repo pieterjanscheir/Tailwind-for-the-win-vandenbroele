@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-full flex">
+  <div class="h-screen flex lg:overflow-y-hidden">
     <TransitionRoot as="template" :show="sidebarOpen">
       <Dialog as="div" class="relative z-40 lg:hidden" @close="sidebarOpen = false">
         <TransitionChild as="template" enter="transition-opacity ease-linear duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="transition-opacity ease-linear duration-300" leave-from="opacity-100" leave-to="opacity-0">
@@ -49,9 +49,7 @@
     </TransitionRoot>
 
     <!-- Static sidebar for desktop -->
-    <div class="flex flex-row z-50 h-screen" >
-
-
+    <div class="flex flex-row z-50 " >
     <div class="hidden  lg:inset-y-0 lg:flex lg:w-64 lg:flex-col lg:border-r lg:border-gray-200 lg:bg-babyBlue lg:pt-5 lg:pb-4">
       <div class="flex flex-shrink-0 items-center px-6">
         <img class="h-8 w-auto" src="../assets/eGovFlow.svg" alt="Your Company" />
@@ -70,7 +68,7 @@
           </div>
         </nav>
         <nav>
-          <div class="-mt-8 h-full ">
+          <div class="mb-20 h-full">
             <!-- Secondary navigation -->
             <div class="mt-1 space-y-1" role="group" aria-labelledby="desktop-teams-headline">
               <a v-for="team in teams" :key="team.name" :href="team.href" class="group flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900">
@@ -85,32 +83,17 @@
     </div>
     </div>
     <div class="hidden lg:inset-y-0 lg:flex lg:w-64 lg:flex-col lg:border-r lg:border-gray-200 lg:bg-babyBlueLight lg:pt-5 lg:pb-4">
-      <div class="flex flex-shrink-0 items-center px-6">
-        <img class="h-8 w-auto" src="../assets/eGovFlow.svg" alt="Your Company" />
-      </div>
       <div>
 
         <!-- Sidebar component -->
-        <div class="mt-5 flex h-0 flex-1 flex-col  pt-1 ">
+        <div class="mt-5 flex h-0 flex-1 flex-col pt-1 ">
           <!-- Navigation -->
           <nav class="mt-6 px-3 grow ">
             <div class="space-y-1">
-              <a v-for="item in navigation" :key="item.name" :href="item.href" :class="[item.current ? 'bg-gray-200 text-gray-900' : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50', 'group flex items-center px-2 py-2 text-sm font-medium rounded-md']" :aria-current="item.current ? 'page' : undefined">
-                <component :is="item.icon" :class="[item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500', 'mr-3 flex-shrink-0 h-6 w-6']" aria-hidden="true" />
+              <a v-for="item in navigationTwo" :key="item.name" :href="item.href" :class="[item.current ? 'bg-gray-200 text-gray-900' : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50', 'group flex items-center px-2 py-2 text-sm font-medium rounded-md']" :aria-current="item.current ? 'page' : undefined">
+
                 {{ item.name }}
               </a>
-            </div>
-          </nav>
-          <nav>
-            <div class="mt-8 h-full ">
-              <!-- Secondary navigation -->
-              <div class="mt-1 space-y-1" role="group" aria-labelledby="desktop-teams-headline">
-                <a v-for="team in teams" :key="team.name" :href="team.href" class="group flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900">
-                  <!--                <span :class="[team.bgColorClass, 'w-2.5 h-2.5 mr-4 rounded-full']" aria-hidden="true" />-->
-                  <component :is="team.icon" :class="[team.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500', 'mr-3 flex-shrink-0 h-6 w-6']" aria-hidden="true" />
-                  <span class="truncate">{{ team.name }}</span>
-                </a>
-              </div>
             </div>
           </nav>
         </div>
@@ -417,6 +400,17 @@ const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
   { name: 'Overzicht', href: '#', icon: TableCellsIcon, current: false },
   { name: 'Rapporten', href: '#', icon: ClockIcon, current: false },
+]
+const navigationTwo = [
+  { name: 'Algemene Parameters', href: '#', icon: HomeIcon, current: true },
+  { name: 'Email Parameters', href: '#', icon: TableCellsIcon, current: false },
+  { name: 'Ondertekenstempels', href: '#', icon: ClockIcon, current: false },
+  { name: 'Deellocaties', href: '#', icon: ClockIcon, current: false },
+  { name: 'DABS', href: '#', icon: ClockIcon, current: false },
+  { name: 'Configuratie', href: '#', icon: ClockIcon, current: false },
+  { name: 'Certificaten', href: '#', icon: ClockIcon, current: false },
+  { name: 'Formulieren', href: '#', icon: ClockIcon, current: false },
+  { name: 'Parameters', href: '#', icon: ClockIcon, current: false },
 ]
 const teams = [
   { name: 'Instellingen', href: '#', bgColorClass: 'bg-indigo-500' ,icon: HomeIcon},
