@@ -79,31 +79,6 @@
           </div>
         </nav>
       </div>
-      <div class="mt-5 flex h-0 flex-1 flex-col  pt-1 ">
-
-        <!-- Navigation -->
-        <nav class="mt-6 px-3 grow ">
-          <div class="space-y-1">
-            <a v-for="item in navigation" :key="item.name" :href="item.href" :class="[item.current ? 'bg-gray-200 text-gray-900' : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50', 'group flex items-center px-2 py-2 text-sm font-medium rounded-md']" :aria-current="item.current ? 'page' : undefined">
-              <component :is="item.icon" :class="[item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500', 'mr-3 flex-shrink-0 h-6 w-6']" aria-hidden="true" />
-              {{ item.name }}
-
-            </a>
-          </div>
-        </nav>
-        <nav>
-          <div class="mt-8 h-full ">
-            <!-- Secondary navigation -->
-            <div class="mt-1 space-y-1" role="group" aria-labelledby="desktop-teams-headline">
-              <a v-for="team in teams" :key="team.name" :href="team.href" class="group flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900">
-                <!--                <span :class="[team.bgColorClass, 'w-2.5 h-2.5 mr-4 rounded-full']" aria-hidden="true" />-->
-                <component :is="team.icon" :class="[team.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500', 'mr-3 flex-shrink-0 h-6 w-6']" aria-hidden="true" />
-                <span class="truncate">{{ team.name }}</span>
-              </a>
-            </div>
-          </div>
-        </nav>
-      </div>
     </div>
     </div>
     <!-- Main column -->
